@@ -10,7 +10,7 @@ We can use multiple Gradle tasks to build each variant.
 
 # Lean mobile app development book
 
-This sample is described in chapter 17 about Continuous Integration and delivery (CI/CD) in the book 'Lean mobile app development'. It will arrive by the end of this year.
+This sample is described in chapter 18 about Continuous Integration and delivery (CI/CD) in the book 'Lean mobile app development'. It will arrive by the end of this year.
 
 In this chapter we will see how we can organize a workflow in which we automate the process of testing and delivering your app.  You can do this for both the beta and the public releases of your app.  To make the build-measure-feedback loop really work you, you need to release early and often. 
 
