@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">coolapp</string>
+    <string name="some_text">Hello this is the default app text !</string>
+</resources>

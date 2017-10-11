@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '25.0.0'
+    defaultConfig {
+        applicationId "packt.com.coolapp"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 161027
+        versionName "0.16.10.27"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        flavorBlueTest{
+            storeFile file('../app/signing/coolapp_flavorBlue.jks')
+            storePassword 'secretFlavorBlue'
+            keyAlias 'secretFlavorBlue'
+            keyPassword 'secretFlavorBlue'
+        }
+        flavorBlueProd {
+            storeFile file('../app/signing/coolapp_flavorBlue.jks')
+            storePassword 'secretFlavorBlue'
+            keyAlias 'secretFlavorBlue'
+            keyPassword 'secretFlavorBlue'
+        }
+        flavorGreenTest{
+            storeFile file('../app/signing/coolapp_flavorGreen.jks')
+            storePassword 'secretFlavorGreen'
+            keyAlias 'secretFlavorGreen'
+            keyPassword 'secretFlavorGreen'
+        }
+        flavorGreenProd {
+            storeFile file('../app/signing/coolapp_flavorGreen.jks')
+            storePassword 'secretFlavorGreen'
+            keyAlias 'secretFlavorGreen'
+            keyPassword 'secretFlavorGreen'
+        }
+    }
+
+    productFlavors {
+        flavorBlueTest {
+            applicationId = "com.coolapp.flavorblue.test"
+            buildConfigField "String", "api_endpoint ", "\"https://testapi.coolapp.com/\""
+        }
+        flavorBlueProd{
+            applicationId = "com.coolapp.flavorblue"
+            buildConfigField "String", " api_endpoint ", "\"https:/api.coolapp.com /\""
+        }
+        flavorGreenTest{
+            applicationId = "com.coolapp.flavorgreen.test"
+            buildConfigField "String", " api_endpoint ", "\"test.api.coolapp.com /\""
+        }
+        flavorGreenProd{
+            applicationId = "com.coolapp.flavorgreen"
+            buildConfigField "String", " api_endpoint ", "\"api.coolapp.com /\""
+        }
+    }
+
+    sourceSets {
+        flavorBlueTest {
+            java.srcDirs = ['src/blue/java']
+            res.srcDirs = ['src/blue /res']
+        }
+        flavorBlueProd{
+            java.srcDirs = ['src/blue/java']
+            res.srcDirs = ['src/blue/res']
+        }
+        flavorGreenTest{
+            java.srcDirs = ['src/green/java']
+            res.srcDirs = ['src/green/res']
+        }
+        flavorGreenProd {
+            java.srcDirs = ['src/green/java']
+            res.srcDirs = ['src/green/res']
+        }
+    }
+
+
+    buildTypes {
+
+        release {
+            productFlavors.flavorBlueTest.signingConfig signingConfigs.flavorBlueTest
+            productFlavors.flavorBlueProd.signingConfig signingConfigs.flavorBlueProd
+            productFlavors.flavorGreenTest.signingConfig signingConfigs.flavorGreenTest
+            productFlavors.flavorGreenProd.signingConfig signingConfigs.flavorGreenProd
+        }
+
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+}
